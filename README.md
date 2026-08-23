@@ -162,7 +162,7 @@ python3 -m pytest tests/ -q
 Everything runs on CPU in well under a minute; no GPU or external data
 download required.
 
-## Limitations (read before reusing numbers)
+## Limitations 
 
 - **Synthetic data**: results describe how the *pipeline* performs on a
   documented synthetic DGP, not how it would perform on real claims data
@@ -177,3 +177,9 @@ download required.
   before trusting the rest of the importance ranking.
 - **Cost impact is a scenario analysis, not a measured effect**. see
   the "Cost impact" section above.
+
+  ## Author
+
+  - Varsini Sakthivadivel Ramasamy
+  - Ms Bioinformatics
+  - Johns Hopkins University
