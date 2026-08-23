@@ -3,7 +3,7 @@
 Predicts which health-plan members will become **high-cost utilizers** in
 the following 12 months, using only information available today (prior
 utilization, chronic condition burden, demographics, social/access risk
-factors). Built as a portfolio project demonstrating an end-to-end,
+factors). Built for demonstrating an end-to-end,
 leakage-aware ML pipeline for a classic population-health risk
 stratification task.
 
