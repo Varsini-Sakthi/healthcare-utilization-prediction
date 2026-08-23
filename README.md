@@ -55,7 +55,7 @@ HCC-based risk stratification).
    maximizing F1, then frozen and applied unchanged to the test set
    (threshold = 0.395, not the default 0.5).
 5. **Baseline comparison**: a majority-class ("always predict low-cost")
-   classifier already gets 80.0% accuracy. this is why accuracy alone
+   classifier already gets 80.0% accuracy, this is why accuracy alone
    is reported alongside ROC-AUC/PR-AUC/recall rather than by itself.
 
 ## Why not just accuracy
