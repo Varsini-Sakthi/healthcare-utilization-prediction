@@ -19,13 +19,6 @@ stratification task.
 | PR-AUC (average precision) | 0.758 |
 | Majority-class baseline accuracy | 80.0% |
 
-**Read the "Why not just accuracy" section below before quoting the 87.5%
-number anywhere** — on this ~20%-prevalence outcome, accuracy alone is a
-weak/misleading headline metric, and this README shows why the model is
-better than it looks from accuracy alone (ROC-AUC/PR-AUC) but also worse
-than a bare accuracy figure implies (recall is 62%, i.e. the model misses
-~38% of true high-cost members).
-
 ## Data
 
 Real member-level claims data is protected health information (PHI) and
