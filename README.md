@@ -111,22 +111,6 @@ defensible number for *total population* cost reduction from the model
 alone, and shouldn't be presented as one without a real program
 evaluation behind it.
 
-### Suggested honest resume bullet
-
-> Built an end-to-end ML pipeline (Python, scikit-learn) to predict
-> high-cost healthcare utilizers 12 months in advance from claims-like
-> features; achieved 0.87 ROC-AUC / 87.5% accuracy (vs. 80% majority-
-> class baseline) on held-out data, with leakage-safe feature
-> engineering and CV-based model selection; quantified the *population-
-> level* cost-reduction ceiling of a hypothetical care-management
-> program via assumption-transparent scenario analysis.
-
-This keeps the technical claims (model, metrics, engineering rigor)
-exactly as strong, while not asserting a causal cost outcome the project
-doesn't actually measure. If you have real program evaluation numbers
-from an internship/job, use those instead, a measured pre/post or RCT
-result is much stronger evidence than any synthetic-data simulation.
-
 ## Project structure
 
 ```
