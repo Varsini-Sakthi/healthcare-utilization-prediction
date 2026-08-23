@@ -26,12 +26,12 @@ can't be shared in a public repo, so `src/generate_data.py` synthesizes a
 12,000-member dataset from an explicit data-generating process (age,
 chronic condition count, prior-year ED/inpatient/outpatient utilization,
 Rx count, dual-eligibility, rural residence, living alone, missed
-appointments, prior-year cost). The *outcome*. next-year total cost. is
+appointments, prior-year cost). The *outcome*, next-year total cost, is
 generated with independent random shocks (including a rare "acute event"
 term), so it is genuinely predictable-but-noisy rather than a
 deterministic function of the inputs. This keeps the modeling problem
 realistic without using or approximating any real patient's data. See the
-module docstring for the full rationale and the specific functional form.
+module docstring for the full rationale and the specific functional form,
 
 `high_cost_next_year` = member is in the **top 20%** of next-year total
 cost (the standard payer/CMS-style definition for this task, analogous to
@@ -48,7 +48,7 @@ HCC-based risk stratification).
 3. **Model**: `GradientBoostingClassifier` (scikit-learn) in a
    `Pipeline` with `StandardScaler` + `OneHotEncoder`. Hyperparameters
    (`n_estimators`, `max_depth`, `learning_rate`, `subsample`) selected
-   by 5-fold stratified CV, **scored on ROC-AUC**, not accuracy. with a
+   by 5-fold stratified CV, **scored on ROC-AUC**, not accuracy, with a
    20%-prevalence outcome, optimizing for accuracy directly biases the
    search toward the majority class.
 4. **Decision threshold**: chosen on the validation set only, by
@@ -64,7 +64,7 @@ With ~20% of members labeled high-cost, a model that never flags anyone
 "high-cost" scores 80% accuracy while being clinically useless. This
 model's 87.5% accuracy is only ~7.5 points above that trivial baseline,
 which is why the headline metrics table above leads with ROC-AUC (0.868)
-and reports recall (61.7%) explicitly. the model correctly identifies
+and reports recall (61.7%) explicitly, the model correctly identifies
 about 6 in 10 members who will actually become high-cost, at 72%
 precision among those it flags.
 
@@ -78,22 +78,22 @@ Top drivers (Gini importance from the fitted model):
 4. `charlson_index` (0.5%)
 5. `prior_rx_count` (0.1%)
 
-Prior-year cost dominates. consistent with the literature finding that
+Prior-year cost dominates, consistent with the literature finding that
 past utilization is the single strongest predictor of future
 utilization. This also means the model leans heavily on one feature;
 `reports/feature_importance.png` and `reports/pr_curve.png` are worth
 inspecting before treating this as a finished clinical tool.
 
-## Cost impact. and why "reduced costs by 12%" needs a caveat
+## Cost impact, and why "reduced costs by 12%" needs a caveat
 
-A prediction model does not, by itself, reduce anyone's costs. it only
+A prediction model does not, by itself, reduce anyone's costs, it only
 identifies who to intervene on. Actually measuring a cost reduction
 requires a real intervention arm and a comparison group (ideally an RCT
-or a matched pre/post design), which this project doesn't have.
+or a matched pre/post design), which this project doesn't have,
 
 `src/cost_impact_simulation.py` instead runs an explicit **scenario
 analysis**: it takes the test-set members the model correctly flags
-(true positives. 24.6% of total test-set cost is concentrated in this
+(true positives 24.6% of total test-set cost is concentrated in this
 group), and multiplies by an assumed program *engagement rate* and an
 assumed per-member *effectiveness*, both literature-informed ranges
 rather than measured values (see `reports/cost_impact_scenarios.json`
@@ -106,7 +106,7 @@ ranges, or a much higher-recall model, or both.
 
 **Practical takeaway**: "12% cost reduction" is a defensible number for
 *effectiveness among successfully engaged, correctly-flagged high-risk
-members* in some published care-management programs. it is not a
+members* in some published care-management programs, it is not a
 defensible number for *total population* cost reduction from the model
 alone, and shouldn't be presented as one without a real program
 evaluation behind it.
@@ -124,7 +124,7 @@ evaluation behind it.
 This keeps the technical claims (model, metrics, engineering rigor)
 exactly as strong, while not asserting a causal cost outcome the project
 doesn't actually measure. If you have real program evaluation numbers
-from an internship/job, use those instead. a measured pre/post or RCT
+from an internship/job, use those instead, a measured pre/post or RCT
 result is much stronger evidence than any synthetic-data simulation.
 
 ## Project structure
@@ -182,7 +182,7 @@ download required.
 
 - **Synthetic data**: results describe how the *pipeline* performs on a
   documented synthetic DGP, not how it would perform on real claims data
- . real payer data has messier missingness, coding artifacts, and
+ real payer data has messier missingness, coding artifacts, and
   distribution shift over time that this doesn't capture.
 - **Recall is 62%**: over a third of true high-cost members are missed
   at the chosen threshold. A deployed version should tune the threshold
